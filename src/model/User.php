@@ -101,4 +101,12 @@ class User {
         session_destroy();
         return Response::create(true, "User logged out successfully", null);
     }
+
+    public function exists(){
+        $id = $_SESSION['user_id'] ?? null;
+        if ($id) {
+            return true;
+        }
+        return false;
+    }    
 }

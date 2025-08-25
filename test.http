@@ -19,7 +19,18 @@ Content-Type: application/json
     "password":"123456"
 }
 
-### get user info
+### logout
 
+POST http://localhost:8080/api/auth/logout.php
+Content-Type: application/json
+
+### get user info
 GET http://localhost:8080/api/auth/me.php
 Content-Type: application/json
+
+### create role
+POST http://localhost:8080/api/role/create.php
+Content-Type: application/json
+{
+    "name":"student"
+}
