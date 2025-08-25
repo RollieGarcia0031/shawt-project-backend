@@ -46,4 +46,38 @@ class User {
             return Response::create(false, "Error: " . $e->getMessage(), null, 500); 
         }
     }
+
+    public function login(){
+        $conn = db_connect();
+
+        $q = "SELECT id, username, email, password_hash FROM users WHERE email = :email LIMIT 1";
+        $stmt = $conn->prepare($q);
+        $stmt->bindParam(':email', $this->email);
+
+        try{
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $password_hash = $row['password_hash'] ?? "";
+            $password_input = $this->password;
+            $verified = password_verify($password_input, $password_hash);
+            
+            if(!$row){
+                return Response::create(false, "User not found", null, 404);
+            }
+            if ($verified) {
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['username'] = $row['username'];
+
+                $row['password_hash'] = "*******";
+                return Response::create(true, "User logged in successfully", $row);
+            }
+            return Response::create(false, "Incorrect password", null, 401);
+            
+        } catch(PDOException $e) {
+            return Response::create(false, "Error: " . $e->getMessage(), null, 500);
+        }
+
+    }
 }

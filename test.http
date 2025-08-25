@@ -2,9 +2,19 @@ POST http://localhost:8080/api/auth/register.php
 Content-Type: application/json
 
 {
-    "name":"Angelo878",
-    "password":"123456",
-    "email":"rrgarcia@slsu.edu.ph",
+    "name":"Mark",
+    "password":"111222333",
+    "email":"mark@email.com",
     "first_name":"Rollie",
     "last_name":"Garcia"
+}
+
+### user login
+
+POST http://localhost:8080/api/auth/login.php
+Content-Type: application/json
+
+{
+    "email":"mark@email.com",
+    "password":"111222333"
 }
