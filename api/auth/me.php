@@ -7,8 +7,6 @@ require_once __DIR__ . "/../../src/middleware/Header.php";
 session_start();
 
 corsAllow();
-headerMiddleware();
-
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     echo Response::create(false, "Method not allowed", null, 405);

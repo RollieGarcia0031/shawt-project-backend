@@ -4,9 +4,9 @@ require_once __DIR__ . '/../../src/model/User.php';
 require_once __DIR__ . '/../../src/middleware/Cors.php';
 require_once __DIR__ . '/../../src/middleware/Header.php';
 
+corsAllow();
 session_start();
 headerMiddleware();
-corsAllow();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo Response::create(false, "Method not allowed", null, 405);
