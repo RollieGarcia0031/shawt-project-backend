@@ -4,6 +4,7 @@ require_once __DIR__ . "/../../src/model/User.php";
 require_once __DIR__ . "/../../src/middleware/Cors.php";
 require_once __DIR__ . "/../../src/middleware/Header.php";
 
+header("Content-Type: application/json");
 session_start();
 
 corsAllow();
