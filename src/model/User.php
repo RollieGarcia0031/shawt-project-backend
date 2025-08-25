@@ -80,4 +80,20 @@ class User {
         }
 
     }
+
+    public function getInfo(){
+        $conn = db_connect();
+        $q = "SELECT username, email, first_name, last_name FROM users WHERE id = :id LIMIT 1";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bindParam(':id', $_SESSION['user_id']);
+        
+        try {
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return Response::create(true, "User info", $row);
+        } catch (PDOException $e){
+            return Response::create(false, "Error: " . $e->getMessage(), null, 500);
+        }
+    }
 }

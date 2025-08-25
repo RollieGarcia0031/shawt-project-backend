@@ -15,6 +15,11 @@ POST http://localhost:8080/api/auth/login.php
 Content-Type: application/json
 
 {
-    "email":"mark@email.com",
-    "password":"111222333"
+    "email":"garciarollie827@gmail.com",
+    "password":"123456"
 }
+
+### get user info
+
+GET http://localhost:8080/api/auth/me.php
+Content-Type: application/json
