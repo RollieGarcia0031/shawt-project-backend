@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . '/../util/Response.php';
 
 function db_connect() {
     $user = 'postgres';
@@ -14,6 +15,7 @@ function db_connect() {
         
         return $pdo;
     } catch (PDOException $e) {
-        echo 'Connection failed: ' . $e->getMessage();
+        echo Response::create(false, "Error: " . $e->getMessage(), null, 500);
+        exit();
     }
 }
