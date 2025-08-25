@@ -96,4 +96,9 @@ class User {
             return Response::create(false, "Error: " . $e->getMessage(), null, 500);
         }
     }
+
+    public function logout(){
+        session_destroy();
+        return Response::create(true, "User logged out successfully", null);
+    }
 }
