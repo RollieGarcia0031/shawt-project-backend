@@ -1,7 +1,11 @@
 <?php
-require_once __DIR__ . '/../util/Response.php';
+require_once __DIR__ . '/../../src/util/Response.php';
 require_once __DIR__ . '/../../src/model/User.php';
-require_once __DIR__ . '/../middleware/Cors.php';
+require_once __DIR__ . '/../../src/middleware/Cors.php';
+require_once __DIR__ . '/../../src/middleware/Header.php';
+
+header('Content-Type: application/json');
+headerMiddleware();
 
 corsAllow();
 

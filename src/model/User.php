@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../util/Response.php';
-require_once __DIR__ . '/../util/DB.php';
+require_once __DIR__ . '/../../config/db.php';
 
 class User {
     private string $name;
@@ -35,6 +35,8 @@ class User {
         $stmt->bindParam(':name', $this->name);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':password', $password_hash);
+        $stmt->bindParam(':first_name', $this->first_name);
+        $stmt->bindParam(':last_name', $this->last_name);
 
         try {
             $stmt->execute();

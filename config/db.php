@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../util/Response.php';
+include_once __DIR__ . '/../src/util/Response.php';
 
 function db_connect() {
     $user = 'postgres';
