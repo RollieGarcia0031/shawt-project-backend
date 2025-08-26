@@ -22,11 +22,6 @@ if(!$user->exists()) {
     exit;
 }
 
-if($role->exists($name)) {
-    echo Response::create(false, "Role already exists", null, 400);
-    exit;
-}
-
 try {
     $role->setName($name);
     echo $role->create();

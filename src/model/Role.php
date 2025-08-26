@@ -26,6 +26,9 @@ class Role {
             $new_id = $conn->lastInsertId();
             return Response::create(true, "Role created successfully", $new_id);
         } catch(PDOException $e) {
+            if (strpos($e->getMessage(), 'duplicate key value') !== false) {
+                return Response::create(false, "Error: Role $name already exists", null, 400);
+            }
             return Response::create(false, "Error: " . $e->getMessage(), null, 500); 
         }
     }
