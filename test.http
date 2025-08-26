@@ -31,6 +31,15 @@ Content-Type: application/json
 ### create role
 POST http://localhost:8080/api/role/create.php
 Content-Type: application/json
+
 {
-    "name":"student"
+    "name":"fucker"
+}
+
+### update roles
+POST http://localhost:8080/api/user/update.php
+Content-Type: application/json
+
+{
+    "role":"admin"
 }

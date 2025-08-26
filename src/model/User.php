@@ -108,5 +108,33 @@ class User {
             return true;
         }
         return false;
-    }    
+    }
+
+    public function updateRole($role){
+        $conn = db_connect();
+
+        //check if role exists
+        $stment = $conn->prepare("SELECT id FROM roles WHERE name = :role LIMIT 1;");
+        $stment->bindParam(':role', $role);
+        $stment->execute();
+        $row = $stment->fetch(PDO::FETCH_ASSOC);
+
+        if(!$row){
+            //role not found
+            return Response::create(false, "Role not found", null, 404);
+        }
+
+        $user_id = $_SESSION['user_id'];
+
+        $stment = $conn->prepare("INSERT INTO user_roles (user_id, role_id) VALUES (:user_id, :role_id)");
+        $stment->bindParam(':user_id', $user_id);
+        $stment->bindParam(':role_id', $row['id']);
+        
+        try {
+            $stment->execute();
+            return Response::create(true, "Role updated successfully", null);
+        } catch (PDOException $e){
+            return Response::create(false, "Error: " . $e->getMessage(), null, 500);
+        }
+    }
 }
