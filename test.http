@@ -15,8 +15,8 @@ POST http://localhost:8080/api/auth/login.php
 Content-Type: application/json
 
 {
-    "email":"garciarollie827@gmail.com",
-    "password":"123456"
+    "email":"mark@email.com",
+    "password":"111222333"
 }
 
 ### logout
@@ -42,4 +42,13 @@ Content-Type: application/json
 
 {
     "role":"admin"
+}
+
+### create group
+POST http://localhost:8080/api/groups/create.php
+Content-Type: application/json
+
+{
+    "name":"BS-CPE 1A",
+    "description":"test description"
 }

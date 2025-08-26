@@ -11,13 +11,19 @@ session_start();
 corsAllow();
 headerMiddleware();
 
+if($_SESSION['user_id'] == null) {
+    echo Response::create(false, "User not logged in", null, 401);
+    exit;
+}
+
 $group = new Group();
 
 $data = json_decode( file_get_contents('php://input'), true );
 $name = $data['name'];
+$description = $data['description'] ?? "";
 
 try {
-    echo $group->create($name);
+    echo $group->create($name, $description);
     exit;
 } catch (Exception $e) {
     echo Response::create(false, "Error: " . $e->getMessage(), null, 500);
